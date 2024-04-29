@@ -1,38 +1,44 @@
 import React, {Fragment, useState} from "react"
 import ReactDOM from "react-dom"
-export default function Login(){
-    const [text, setText] = useState(
-        window.localStorage.getItem('text')
-    )
+import { useLocalStorage } from "../useLocalStorage"
 
-    const setLocalStorage = value => {
-        try {
-            setText(value)
-            window.localStorage.setItem("text", value)
-        } catch(error) {
-            console.error(error)
+export default function Login(){
+    const userEmail = "admin@admin.com"
+    const userPassword = "admin"
+    let boxEmail = ''
+    let boxPassword = ''
+    const handleClick = () => {
+        boxEmail = document.getElementById("emaillogin").value;
+        boxPassword = document.getElementById("passwordlogin").value;
+        if (userEmail == boxEmail && userPassword == boxPassword){
+            
+            alert("El usuario y la contraseña son correctas")
+        } else {
+            alert("Trolliao puto")
         }
     }
+    const [text, setText] = useLocalStorage('text', '')
+
     return(
         <div>
             <h3>Ingrese su correo electronico</h3>
+
             <form>
                 <input 
-                type="text" 
-                onChange={e => setLocalStorage(e.target.value)}
-                value={text}/>
+                id="emaillogin"
+                type="text"/>
             </form>
+
             <h3>Ingrese su contraseña</h3>
+
             <form>
                 <input 
-                type="text" 
+                id="passwordlogin"
+                type="text"
                 />
             </form>
+
+            <button onClick={handleClick}>Login</button>
         </div>
     )
 }
-
-/*<h3>Ingrese su correo:</h3>
-            <input>example123@gmail.com</input>
-            <h3>Ingrese su contraseña:</h3>
-            <input>password123</input>*/

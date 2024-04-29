@@ -3,16 +3,16 @@ import ReactDOM from "react-dom"
 import { useLocalStorage } from "../useLocalStorage"
 
 export default function Login(){
+    let loginConfirmation = false
     const userEmail = "admin@admin.com"
     const userPassword = "admin"
-    let boxEmail = ''
-    let boxPassword = ''
+    const [boxEmail, setBoxEmail] = useLocalStorage('boxEmail', '')
+    const [boxPassword, setBoxPassword] = useLocalStorage('boxPassword', '')
     const handleClick = () => {
-        boxEmail = document.getElementById("emaillogin").value;
-        boxPassword = document.getElementById("passwordlogin").value;
         if (userEmail == boxEmail && userPassword == boxPassword){
-            
+            loginConfirmation = true
             alert("El usuario y la contraseña son correctas")
+            return loginConfirmation
         } else {
             alert("Trolliao puto")
         }
@@ -26,7 +26,9 @@ export default function Login(){
             <form>
                 <input 
                 id="emaillogin"
-                type="text"/>
+                type="text"
+                onChange={e => setBoxEmail(e.target.value)}
+                value={boxEmail}/>
             </form>
 
             <h3>Ingrese su contraseña</h3>
@@ -35,6 +37,8 @@ export default function Login(){
                 <input 
                 id="passwordlogin"
                 type="text"
+                onChange={e => setBoxPassword(e.target.value)}
+                value={boxPassword}
                 />
             </form>
 

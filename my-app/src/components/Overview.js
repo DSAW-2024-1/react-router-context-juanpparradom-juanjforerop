@@ -1,4 +1,15 @@
+import React from "react"
+import { useAuth } from "../AuthContext"
+import { useNavigate } from 'react-router-dom';
+
 export default function Overview(){
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    if (!isAuthenticated) {
+        navigate("/login");
+    }
+
     return(
         <div>
             <h2>Este es el overview, a continuacion se muestran las caracteristicas de la pagina:</h2>

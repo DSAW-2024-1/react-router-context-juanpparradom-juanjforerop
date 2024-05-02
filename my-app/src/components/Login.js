@@ -1,18 +1,20 @@
 import React, {Fragment, useState} from "react"
 import ReactDOM from "react-dom"
 import { useLocalStorage } from "../useLocalStorage"
+import { useAuth } from "../AuthContext"
 
 export default function Login(){
-    let loginConfirmation = false
+    const {isAuthenticated, setIsAuthenticated} = useAuth();
+
     const userEmail = "admin@admin.com"
     const userPassword = "admin"
+
     const [boxEmail, setBoxEmail] = useLocalStorage('boxEmail', '')
     const [boxPassword, setBoxPassword] = useLocalStorage('boxPassword', '')
     const handleClick = () => {
         if (userEmail == boxEmail && userPassword == boxPassword){
-            loginConfirmation = true
+            setIsAuthenticated(true);
             alert("El usuario y la contraseña son correctas")
-            return loginConfirmation
         } else {
             alert("Trolliao puto")
         }

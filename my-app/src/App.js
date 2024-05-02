@@ -1,12 +1,14 @@
-import React, {Fragment, useState} from "react"
-import ReactDOM from "react-dom"
-import Navbar from "./Navbar"
-import Home from "./components/Home"
-import Overview from "./components/Overview"
-import Login from "./components/Login"
-import Contact from "./components/Contact"
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Navbar from './Navbar';
+import Home from './components/Home';
+import Overview from './components/Overview';
+import Login from './components/Login';
+import Contact from './components/Contact';
+import { AuthProvider } from './AuthContext'; // Importa el contexto
 
-function App(){
+function App() {
   let pages
   switch (window.location.pathname) {
     case "/":
@@ -23,17 +25,15 @@ function App(){
       break  
   }
   return (
-    <>
-      <Navbar />
-      {pages }
-    </>
-  )
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        
+        {pages }
+        
+      </Router>
+    </AuthProvider>
+  );
 }
 
-/*function App(){
-  return (
-      <Navbar />
-  )
-}*/
-
-export default App
+export default App;

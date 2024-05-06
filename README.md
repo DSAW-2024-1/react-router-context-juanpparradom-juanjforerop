@@ -2,8 +2,8 @@
 
 # Desarrollo de Aplicaciones Web
 
-## NOMBRE_DE_LOS_ESTUDIANTES
-
+## NOMBRE_DE_LOS_ESTUDIANTES y link de deploy
+- https://preventivedeploytaller.vercel.app/
 - Juan José Forero Peña
 - Juan Pablo Parrado Morales
 
